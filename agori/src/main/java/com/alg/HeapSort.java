@@ -1,4 +1,4 @@
-package com.souche;
+package com.alg;
 
 /**
  * Created by chauncy on 2018/3/28.

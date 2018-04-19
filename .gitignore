@@ -1,0 +1,6 @@
+git# Created by .ignore support plugin (hsz.mobi)
+
+.idea
+tar
+/agori/target/
+*.iml
