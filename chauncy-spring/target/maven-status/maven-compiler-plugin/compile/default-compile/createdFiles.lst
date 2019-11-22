@@ -1,0 +1,8 @@
+com/chauncy/mvcframework/anotation/MyService.class
+com/chauncy/mvcframework/anotation/MyAutowired.class
+com/chauncy/mvcframework/anotation/MyRequestParam.class
+com/chauncy/mvctest/TestService.class
+com/chauncy/mvcframework/servlet/MyDispatchServlet.class
+com/chauncy/mvcframework/anotation/MyController.class
+com/chauncy/mvcframework/anotation/MyRequestMapping.class
+com/chauncy/mvctest/TestController.class
