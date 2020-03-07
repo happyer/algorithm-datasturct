@@ -7,17 +7,15 @@ public class App {
 
 
     /**
-     * bridge 可以区分度 类的功能层次机构(Reinforce 与 display ) 和 类的实现层次结构(DisplayImpl 与StringDisplayImpl)
+     * bridge 显示器才分为 lcd led etc  ,颜色分为 red .blue etc ,需要给他们进行组合
+     *
      * @param args
      */
     public static void main(String[] args) {
+        Display lcdRedDisplay = new LcdDisplayImpl(new RedColor());
+        lcdRedDisplay.display();
 
-        Display display = new Display(new StringDisplayImpl());
-        display.method1();
-
-        ReinforeceDisplay reinforeceDisplay = new ReinforeceDisplay(new StringDisplayImpl());
-        reinforeceDisplay.reinforece();
-
-
+        Display ledRedDisPlay = new LedDisplayImpl(new RedColor());
+        ledRedDisPlay.display();
     }
 }
