@@ -1,21 +1,22 @@
 package patten.bridge;
 
+import java.util.Collections;
+
 /**
  * Created by chauncy on 2018/7/26.
  */
-public  class Display {
-    private DisplayImpl displayImpl;
+public abstract class Display {
+
+    private Colors colors;
 
 
-    public Display(DisplayImpl displayImpl) {
-        this.displayImpl = displayImpl;
+    public Display(Colors colors) {
+        this.colors = colors;
     }
 
-    public void method1(){
-        displayImpl.method01Impl();
+    protected String getCurrentColor(){
+        return colors.getColor();
     }
-    public void method2(){
-        displayImpl.method02Impl();
 
-    }
+    abstract void display();
 }
