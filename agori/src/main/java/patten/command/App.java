@@ -12,5 +12,7 @@ public class App {
         offCommand.execute();
         onCommand.execute();
 
+        while (true);
+
     }
 }
