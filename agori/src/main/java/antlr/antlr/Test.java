@@ -4,7 +4,6 @@ import antlr.LabeleExprLexer;
 import antlr.LabeleExprParser;
 import antlr.LabeleExprParser.ProgContext;
 import java.io.IOException;
-import org.antlr.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 
