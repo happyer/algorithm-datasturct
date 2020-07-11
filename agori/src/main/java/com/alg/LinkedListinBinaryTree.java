@@ -97,27 +97,131 @@ public class LinkedListinBinaryTree {
         Arrays.fill(right, N);
 
         for (int i = 0; i < N; ++i) {
-            if (seats[i] == 1) left[i] = 0;
-            else if (i > 0) left[i] = left[i-1] + 1;
+            if (seats[i] == 1) {
+                left[i] = 0;
+            } else if (i > 0) {
+                left[i] = left[i - 1] + 1;
+            }
         }
 
-        for (int i = N-1; i >= 0; --i) {
-            if (seats[i] == 1) right[i] = 0;
-            else if (i < N-1) right[i] = right[i+1] + 1;
+        for (int i = N - 1; i >= 0; --i) {
+            if (seats[i] == 1) {
+                right[i] = 0;
+            } else if (i < N - 1) {
+                right[i] = right[i + 1] + 1;
+            }
         }
 
         int ans = 0;
-        for (int i = 0; i < N; ++i)
-            if (seats[i] == 0)
+        for (int i = 0; i < N; ++i) {
+            if (seats[i] == 0) {
                 ans = Math.max(ans, Math.min(left[i], right[i]));
+            }
+        }
         return ans;
 
     }
 
 
+    public static String addBinary(String a, String b) {
+        char[] s1 = a.toCharArray();
+        char[] s2 = b.toCharArray();
+        StringBuilder sb = new StringBuilder();
+        int l1 = s1.length;
+        int l2 = s2.length;
+        if (l1 >= l2) {
+            int temp = 0;
+            int idx = l2 - 1;
+            for (int i = s1.length - 1; i >= 0; i--) {
+                if (idx >= 0) {
+                    int f1 = s1[i] == '1' ? 1 : 0;
+                    int f2 = s2[idx] == '1' ? 1 : 0;
+                    temp += f1 + f2;
+                    if (temp == 0) {
+                        sb.append(0);
+                    } else if (temp == 1) {
+                        sb.append(1);
+                        temp = 0;
+                    } else if (temp == 2) {
+                        sb.append(0);
+                        temp = 1;
+                    } else if (temp == 3) {
+                        sb.append(1);
+                        temp = 1;
+                    }
+                    idx--;
+                } else {
+                    int f1 = s1[i] == '1' ? 1 : 0;
+                    temp += f1;
+                    if (temp == 0) {
+                        sb.append(0);
+                    } else if (temp == 1) {
+                        sb.append(1);
+                        temp = 0;
+                    } else if (temp == 2) {
+                        sb.append(0);
+                        temp = 1;
+                    }
+
+                }
+
+            }
+            if (temp == 1) {
+                sb.append(1);
+                temp = 0;
+            }
+
+        } else {
+            int temp = 0;
+            int idx = l1 - 1;
+            for (int i = s2.length - 1; i >= 0; i--) {
+                if (idx >= 0) {
+                    int f1 = s2[i] == '1' ? 1 : 0;
+                    int f2 = s1[idx] == '1' ? 1 : 0;
+                    temp += f1 + f2;
+                    if (temp == 0) {
+                        sb.append(0);
+                    } else if (temp == 1) {
+                        sb.append(1);
+                        temp = 0;
+                    } else if (temp == 2) {
+                        sb.append(0);
+                        temp = 1;
+                    } else if (temp == 3) {
+                        sb.append(1);
+                        temp = 1;
+                    }
+                    idx--;
+                } else {
+                    int f1 = s2[i] == '1' ? 1 : 0;
+                    temp += f1;
+                    if (temp == 0) {
+                        sb.append(0);
+                    } else if (temp == 1) {
+                        sb.append(1);
+                        temp = 0;
+                    } else if (temp == 2) {
+                        sb.append(0);
+                        temp = 1;
+                    }
+
+                }
+            }
+            if (temp == 1){
+                sb.append(1);
+                temp = 0;
+            }
+        }
+        return sb.reverse().toString();
+    }
+
     public static void main(String[] args) {
-        int[] a = {1, 0, 0, 0, 1, 0, 1};
-        System.out.println("dominantIndex(a) = " + maxDistToClosest(a));
+//        int[] a = {1, 0, 0, 0, 1, 0, 1};
+//        System.out.println("dominantIndex(a) = " + maxDistToClosest(a));
+
+        System.out.println("addBinary(\"11\",\"10011\") = " + addBinary("11", "1111"));
+        System.out.println("addBinary(\"11\",\"10011\") = " + addBinary("1111", "11"));
+
     }
 
 }
