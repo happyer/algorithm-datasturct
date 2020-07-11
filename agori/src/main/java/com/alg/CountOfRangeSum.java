@@ -20,7 +20,7 @@ public class CountOfRangeSum {
         for (int i = 0; i < nums.length; i++) {
             sums[i + 1] = sums[i] + nums[i];
         }
-        return mergeSort(sums, 1, n , lower, upper);
+        return mergeSort(sums, 0, n-1 , lower, upper);
     }
 
     private int mergeSort(int[] nums, int lo, int hi, int lower, int upper) {
@@ -32,7 +32,11 @@ public class CountOfRangeSum {
         sum += mergeSort(nums, lo, mid, lower, upper);
         sum += mergeSort(nums, mid + 1, hi, lower, upper);
 
-        int startIndex = mid, endIndex = mid;
+        /**
+         * 可以先固定 i(之后一个一个进行遍历，但是利用sort ,可以降低到查找复杂度)，即是 merge sort 的左边部分，然后去寻找 有多少个符合 范围的数，使用startIndex 记录大于lower 的开始，然后在使用
+         * endIndex 记录结束的upper 最后个数就是end - start
+         */
+        int startIndex = mid+1, endIndex = mid+1;
         for (int i = lo; i <= mid; i++) {
             while (startIndex <= hi && nums[startIndex] - nums[i] < lower) {
                 startIndex++;
