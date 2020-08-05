@@ -91,11 +91,7 @@ public class Trie {
             stringIndex.str = stringBuilder.toString();
             stringIndex.index = root.index;
             ans.add(stringIndex);
-            return;
         }
-
-
-
 
         for (int i = 0; i < 26; i++) {
             if (root.children[i] != null) {
