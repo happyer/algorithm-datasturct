@@ -64,6 +64,48 @@ public class Trie {
     }
 
 
+    private boolean isNull(TrieNode[] arr) {
+        for (TrieNode trieNode : arr) {
+            if (trieNode != null) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+    public StringIndex getLast() {
+
+        List<StringIndex> ans = new ArrayList<>();
+        StringIndex stringIndex = help(root, new ArrayList<>());
+        return stringIndex;
+    }
+
+    private StringIndex help(TrieNode root, List<Character> temp) {
+        if (root == null) return null;
+        if (root.index != null && (isNull(root.children))) {
+            StringIndex stringIndex = new StringIndex();
+            StringBuilder stringBuilder = new StringBuilder();
+            for (Character character : temp) {
+                stringBuilder.append(character);
+            }
+            stringIndex.str = stringBuilder.toString();
+            stringIndex.index = root.index;
+            return stringIndex;
+        }
+        for (int i = 25; i >= 0; i--) {
+            if (root.children[i] != null) {
+                temp.add(root.children[i].val);
+                StringIndex stringIndex = help(root.children[i], temp);
+                if (stringIndex != null) return stringIndex;
+                temp.remove(temp.size() - 1);
+            }
+        }
+        return null;
+
+    }
+
+
     public static class StringIndex {
         public String str;
         public Integer index;
