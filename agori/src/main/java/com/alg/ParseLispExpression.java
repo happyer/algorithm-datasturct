@@ -13,13 +13,21 @@ public class ParseLispExpression {
 
     public static int pos = 0;
 
+    public static void main(String[] args) {
+        String t = "( add 2 3 ) ";
+        ParseLispExpression expression = new ParseLispExpression();
+        int ans  = expression.evaluate(t);
+        System.out.println("ans = " + ans);
+    }
+
+
 
     public int evaluate(String expression) {
 
 
 
 
-        return help(expression, pos);
+        return help(expression);
 
 
     }
@@ -28,32 +36,32 @@ public class ParseLispExpression {
     private List<Map<String,Integer>> q = new ArrayList<>();
 
 
-    private int help(String expression, int p) {
-        if (expression.charAt(p) == '('){
-            p++;
+    private int help(String expression) {
+        if (expression.charAt(pos) == '('){
+            pos++;
         }
-        if (expression.charAt(p) ==' ' ){
-            ++p;
+        if (expression.charAt(pos) == 32 ){
+            ++pos;
         }
-        String toke = getToken(expression,p);
-        if (toke =="add"){
-            int val1 = help(expression,++p);
-            int val2  = help(expression,++p);
+        String toke = getToken(expression);
+        if (toke.equals("add")){
+            int val1 = help(expression);
+            int val2  = help(expression);
             return val1+val2;
 
-        }if (toke =="mul"){
-            int val = help(expression,++p);
-            int val2 = help(expression,++p);
+        }if (toke.equals("mul")){
+            int val = help(expression);
+            int val2 = help(expression);
             return val*val2;
 
-        }if (toke =="let"){
-            ++p; //skip space
-            help(expression,p);
+        }if (toke.equals("let")){
+            ++pos; //skip space
+            return help(expression);
         }
         if (Character.isAlphabetic(toke.charAt(0))){
            //variable
            String valName = toke;
-           int val = help(expression,p);
+           int val = help(expression);
            Map<String,Integer> map = new HashMap<>();
            map.put(valName,val);
            q.add(map);
@@ -65,8 +73,13 @@ public class ParseLispExpression {
 
     }
 
-    private String getToken(String expression, int p) {
-        return null;
+    private String getToken(String expression) {
+        StringBuilder sb = new StringBuilder();
+        while (expression.charAt(pos) != 32 && expression.charAt(pos) != ')'){
+            sb.append(expression.charAt(pos));
+            pos++;
+        }
+        return sb.toString();
     }
 
 
